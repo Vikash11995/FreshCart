@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { CiApple } from "react-icons/ci";
 import { FaShippingFast } from "react-icons/fa";
 import { BsArrowReturnLeft } from "react-icons/bs";
@@ -39,6 +39,39 @@ const reasons = [
   { title: "Easy Returns", icon: BsArrowReturnLeft },
 ];
 
+// VideoWithSkeleton component for hero video
+function VideoWithSkeleton({ src, className }) {
+  const [loaded, setLoaded] = useState(false);
+
+  return (
+    <div className="w-full h-56 sm:h-72 md:h-80 lg:h-96 relative overflow-hidden  rounded-2xl flex items-center justify-center">
+      {!loaded && (
+        <div
+          className="absolute inset-0 flex items-center justify-center z-10"
+          aria-label="Loading video"
+        >
+          {/* Skeleton shimmer */}
+          <div className="w-full h-full bg-gray-200 rounded-2xl animate-pulse flex items-center justify-center">
+            <div className="w-20 h-20 bg-gray-300 rounded-full animate-pulse" />
+          </div>
+        </div>
+      )}
+      <video
+        src={src}
+        autoPlay
+        muted
+        loop
+        onCanPlayThrough={() => setLoaded(true)}
+        className={
+          `${className} w-full h-full object-cover rounded-2xl drop-shadow-sm ` +
+          (!loaded ? "invisible" : "")
+        }
+        style={{ transition: "visibility 0.1s" }}
+      ></video>
+    </div>
+  );
+}
+
 export default function App() {
   return (
     <div className="min-h-screen bg-[#efeae37a] text-gray-800 ">
@@ -74,16 +107,7 @@ export default function App() {
             </button>
           </div>
         </div>
-
-        <div className="w-full h-56 sm:h-72 md:h-80 lg:h-96 relative overflow-hidden bg-green-100 rounded-2xl flex items-center justify-center">
-          <video
-            src="https://res.cloudinary.com/dr9al4lhy/video/upload/v1765650468/274912_ewshhr.mp4"
-            autoPlay
-            muted
-            loop
-            className="w-full h-full object-cover rounded-2xl drop-shadow-sm"
-          ></video>
-        </div>
+        <VideoWithSkeleton src="https://res.cloudinary.com/dr9al4lhy/video/upload/v1765650468/274912_ewshhr.mp4" />
       </section>
 
       {/* Categories */}
