@@ -4,6 +4,7 @@ import { FaShippingFast } from "react-icons/fa";
 import { BsArrowReturnLeft } from "react-icons/bs";
 import { AiOutlineSafetyCertificate } from "react-icons/ai";
 import CategoriesTab from "../components/CategoriesTab";
+import ProductCard from "../components/ProductCard";
 
 
 
@@ -76,24 +77,7 @@ export default function Home() {
      <CategoriesTab/>
 
       {/* Products */}
-      <section className="max-w-7xl mx-auto px-4 py-12" id="productDiv">
-        <h3 className="text-2xl font-semibold mb-6">Featured Products</h3>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {Array.from({ length: 8 }).map((_, i) => (
-            <div
-              key={i}
-              className="bg-white rounded-xl shadow hover:shadow-lg p-4"
-            >
-              <div className="h-32 bg-green-100 rounded-lg mb-4" />
-              <h4 className="font-semibold">Fresh Tomato</h4>
-              <p className="text-sm text-gray-500">₹40 / kg</p>
-              {/* <button className="mt-3 w-full bg-green-600 text-white py-2 rounded-full hover:bg-green-700">
-                Add to Cart
-              </button> */}
-            </div>
-          ))}
-        </div>
-      </section>
+ <ProductCard/>
 
       {/* Why Choose Us */}
       <section className="bg-green-50 py-12">
