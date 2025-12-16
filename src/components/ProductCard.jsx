@@ -12,11 +12,11 @@ const ProductCard = () => {
               key={i}
               className="bg-white rounded-xl shadow hover:shadow-lg p-4 flex flex-col items-center"
             >
-              <div className="h-32 w-full flex items-center justify-center bg-gray-100 rounded-lg mb-4 overflow-hidden">
+              <div className="h-30 md:h-32 w-full flex items-center justify-center bg-gray-100 rounded-lg mb-4 overflow-hidden">
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="object-cover  w-full"
+                  className="object-cover  w-full "
                 />
               </div>
               <h4 className="font-semibold text-center">{product.name}</h4>

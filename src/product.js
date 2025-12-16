@@ -4,7 +4,7 @@ const products = [
       id: "v1",
       name: "Safed Petha",
       price: 45,
-      unit: "1 kg",
+      unit: "kg",
       category: "Vegetables",
       image: "https://www.bbassets.com/media/uploads/p/l/10000010-3_3-fresho-ash-gourd.jpg"
     },
@@ -36,7 +36,7 @@ const products = [
       id: "v5",
       name: "Onion",
       price: 40,
-      unit: "1 kg",
+      unit: "kg",
       category: "Vegetables",
       image: "https://www.bbassets.com/media/uploads/p/m/10000149_15-fresho-onion.jpg?tr=w-154,q-80"
     },
@@ -44,7 +44,7 @@ const products = [
       id: "v6",
       name: "Potato",
       price: 30,
-      unit: "1 kg",
+      unit: "kg",
       category: "Vegetables",
       image: "https://www.bbassets.com/media/uploads/p/m/40048457_20-fresho-potato-new-crop.jpg?tr=w-154,q-80"
     },
@@ -52,7 +52,7 @@ const products = [
       id: "v7",
       name: "Mushroom",
       price: 50,
-      unit: "1 packet",
+      unit: "packet",
       category: "Vegetables",
       image: "https://www.bbassets.com/media/uploads/p/l/10000273_18-fresho-mushrooms-button.jpg"
     },
@@ -70,7 +70,7 @@ const products = [
       id: "s1",
       name: "Palak",
       price: 25,
-      unit: "1 bunch",
+      unit: "bunch",
       category: "Saag Items",
       image: "https://www.bbassets.com/media/uploads/p/m/40050066_5-fresho-palak-organically-grown.jpg?tr=w-154,q-80"
     },
@@ -78,7 +78,7 @@ const products = [
       id: "s2",
       name: "Methi",
       price: 25,
-      unit: "1 bunch",
+      unit: "bunch",
       category: "Saag Items",
       image: "https://www.bbassets.com/media/uploads/p/m/10000112_22-fresho-methiventhaya-keerai-cleaned-without-roots.jpg?tr=w-154,q-80"
     },
@@ -88,7 +88,7 @@ const products = [
       id: "f1",
       name: "Apple (Kinnaur)",
       price: 190,
-      unit: "1 kg",
+      unit: "kg",
       category: "Fruits",
       image: "https://www.bbassets.com/media/uploads/p/m/40033821_12-fresho-apple-kinnaur.jpg?tr=w-154,q-80"
     },
@@ -96,7 +96,7 @@ const products = [
       id: "f2",
       name: "Banana",
       price: 70,
-      unit: "1 dozen",
+      unit: "dozen",
       category: "Fruits",
       image: "https://www.bbassets.com/media/uploads/p/m/10000027_32-fresho-banana-robusta.jpg?tr=w-154,q-80"
     },
@@ -104,7 +104,7 @@ const products = [
       id: "f3",
       name: "Dragon Fruit",
       price: 85,
-      unit: "1 piece",
+      unit: "piece",
       category: "Fruits",
       image: "https://www.bbassets.com/media/uploads/p/l/40008982_17-fresho-dragon-fruit.jpg"
     },
@@ -116,7 +116,7 @@ const products = [
       price: 80,
       unit: "250g",
       category: "Dairy",
-      image: "https://imgs.search.brave.com/jemoamlAT_3dhoboXzJT-I3drtOoiIUUpS6zNtTyfBk/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzA2LzMyLzY0Lzk1/LzM2MF9GXzYzMjY0/OTU1Ml80R2k2ak9s/bmJEbGxHMXF5aktv/NTNsemRGREpORGZo/cS5qcGc"
+      image: "https://res.cloudinary.com/dr9al4lhy/image/upload/v1765894932/360_F_632649552_4Gi6jOlnbDllG1qyjKo53lzdFDJNDfhq_stjmfx.jpg"
     },
     {
       id: "d2",
@@ -132,7 +132,7 @@ const products = [
       id: "fz1",
       name: "Frozen Peas",
       price: 120,
-      unit: "1 kg",
+      unit: "kg",
       category: "Frozen",
       image: "https://imgs.search.brave.com/f14E-JnjFBS6rAE9Rm6kEN0TF79zU0_W7gM9wkPfYy0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly91cy4x/MjNyZi5jb20vNDUw/d20vY29naXBpeC9j/b2dpcGl4MTAxMC9j/b2dpcGl4MTAxMDAw/MTQ0LzgxMzIzMTYt/ZnJvemVuLXBlYXMt/b24tYS1wbGF0ZS5q/cGc_dmVyPTY"
     }
