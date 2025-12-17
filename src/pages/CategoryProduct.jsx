@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import productsData from '../product';
 
 // Category and utility definitions remain the same
@@ -121,6 +121,12 @@ function MobileCategoryNav({ categories, selectedCategory, handleCategoryClick }
 
 const CategoryProduct = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
+
+  // Scroll to top on mount
+  useEffect(() => {
+    // For browsers, this should scroll the document to top
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  }, []);
 
   // Filtering logic unchanged
   const filteredProducts = selectedCategory === "All"
