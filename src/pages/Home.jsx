@@ -63,7 +63,7 @@ export default function Home() {
           </p>
           <div className="flex gap-4">
             <button className="bg-green-600 text-white px-6 py-3 rounded-full hover:bg-green-700">
-              Shop Now
+             <a href="categoryTab"> Shop Now</a>
             </button>
             <button className="border border-green-600 text-green-700 px-6 py-3 rounded-full hover:bg-green-50">
              <a href="#productDiv"> View Deals</a>

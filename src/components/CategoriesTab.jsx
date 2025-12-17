@@ -36,7 +36,7 @@ const categories = [
 
 const CategoriesTab = () => {
   return (
-    <div>
+    <div id='categoryTab'>
       <section className="max-w-7xl mx-auto px-4 py-12">
         <h3 className="text-2xl font-semibold mb-6">Categories</h3>
         <div
