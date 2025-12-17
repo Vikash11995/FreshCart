@@ -15,22 +15,16 @@ const categories = [
     slug: "fruits",
   },
   {
-    category: "Herbs",
+    category: "Herbs & Seasonings",
     image:
       "https://cdn.zeptonow.com/production/tr:w-90,ar-160-161,pr-true,f-auto,q-40/cms/sub_category/63d60637-1717-4eb3-9df3-a9bfb6f05d49.png",
     slug: "herbs",
   },
   {
-    category: "Organic",
+    category: "Dairy & Eggs",
     image:
-      "https://cdn.zeptonow.com/production/tr:w-90,ar-480-480,pr-true,f-auto,q-40/cms/sub_category/8eaac110-0f14-47d3-b986-b024f107aba3.png",
-    slug: "organic",
-  },
-  {
-    category: "Seasonal",
-    image:
-      "https://cdn.zeptonow.com/production/tr:w-90,ar-192-192,pr-true,f-auto,q-40/cms/sub_category/8aeb735f-3e05-4556-8dba-63c890d0fc0a.png",
-    slug: "seasonal",
+      "https://res.cloudinary.com/dr9al4lhy/image/upload/e_background_removal/b_rgb:FFFFFF/f_png/v1765979182/474e6e58-1894-4378-86f1-168cc7266d1a_brutr2.png",
+    slug: "dairy",
   },
   {
     category: "Meat & Eggs",
@@ -49,8 +43,9 @@ const CategoriesTab = () => {
           className="
             flex gap-6 
             overflow-x-auto 
-            md:grid md:grid-cols-6 md:gap-6 md:overflow-visible
+            md:grid md:grid-cols-5 md:gap-6 md:overflow-visible
             pb-4 md:pb-0
+            
           "
           style={{
             WebkitOverflowScrolling: "touch",
@@ -69,7 +64,7 @@ const CategoriesTab = () => {
             {categories.map((cat, idx) => (
               <Link to={`/${cat.slug}`} key={cat.category + idx}>
                 <div
-                  className="shrink-0 bg-white p-6 rounded-xl shadow hover:shadow-lg text-center cursor-pointer md:w-auto w-30 h-36"
+                  className="shrink-0 bg-white p-4 rounded-xl shadow hover:shadow-lg text-center cursor-pointer md:w-auto w-30 h-36"
                   title={cat.category}
                 >
                   <div className="flex justify-center flex-col items-center gap-1">
