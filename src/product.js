@@ -13,7 +13,7 @@ const products = [
       name: "Amla",
       price: 20,
       unit: "250g",
-      category: "organic",
+      category: "seasonings",
       image: "https://www.bbassets.com/media/uploads/p/m/10000332_17-fresho-amla.jpg?tr=w-154,q-80"
     },
     {
@@ -21,7 +21,7 @@ const products = [
       name: "Raw Haldi",
       price: 30,
       unit: "250g",
-      category: "organic",
+      category: "seasonings",
       image: "https://www.bbassets.com/media/uploads/p/l/40004372_16-fresho-turmeric-fresh.jpg"
     },
     {
