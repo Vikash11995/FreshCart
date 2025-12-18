@@ -137,6 +137,7 @@ const CategoryProduct = () => {
             prod.category === "Herbs" ||
             prod.category === "herbs" ||
             prod.category === "Seasonings" ||
+            prod.category === "seasonings" ||
             prod.category === "Herbs & Seasonings"
           );
         } 

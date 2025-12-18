@@ -42,7 +42,7 @@ function VideoWithSkeleton({ src, className }) {
           `${className} w-full h-full object-cover rounded-2xl drop-shadow-sm ` +
           (!loaded ? "invisible" : "")
         }
-        style={{ transition: "visibility 0.1s" }}
+        style={{ transition: "visibility 0.2s" }}
       ></video>
     </div>
   );
