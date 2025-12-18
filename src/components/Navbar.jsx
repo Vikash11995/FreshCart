@@ -4,9 +4,9 @@ import { Link } from 'react-router'
 const NAVBAR_HEIGHT = 64; // px; for consistent spacing if needed elsewhere
 
 const animatedPlaceholders = [
-  "Search fruits & vegetables",
-  "Try 'Mushroom', 'Onion', 'Broccoli'...",
-  "Find your seasonal picks!",
+  "Search fruits,vegetables",
+  "Try Mushroom, Onion, Broccoli...",
+  "Find your picks!",
 ];
 
 function MagnifierIcon({ className = "", ...props }) {
