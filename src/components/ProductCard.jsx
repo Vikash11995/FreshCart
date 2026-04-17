@@ -40,9 +40,9 @@ const ProductCard = () => {
                        </div>
                        <h4 className="font-semibold text-center">{product.name}</h4>
                        <p className="text-sm text-gray-500 text-center">{`₹ ${product.price} / ${product.unit}`}</p>
-                       {/* <button className="mt-3 w-full bg-green-600 text-white py-2 rounded-full hover:bg-green-700">
+                       <button className="mt-3 w-full bg-green-600 text-white py-2 rounded-full hover:bg-green-700 cursor-pointer">
                          Add to Cart
-                       </button> */}
+                       </button>
                      </div>
                    ))}
                  </div>

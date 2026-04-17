@@ -1,12 +1,13 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
+
 import { CiApple } from "react-icons/ci";
 import { FaShippingFast } from "react-icons/fa";
 import { BsArrowReturnLeft } from "react-icons/bs";
 import { AiOutlineSafetyCertificate } from "react-icons/ai";
 import CategoriesTab from "../components/CategoriesTab";
 import ProductCard from "../components/ProductCard";
-
-
+import CartTab from "../components/CartTab";
+import { useNavigate } from 'react-router-dom';
 
 const reasons = [
   { title: "Farm Fresh", icon: CiApple },
@@ -20,7 +21,7 @@ function VideoWithSkeleton({ src, className }) {
   const [loaded, setLoaded] = useState(false);
 
   return (
-    <div className="w-full h-56 sm:h-72 md:h-80 lg:h-96 relative overflow-hidden  rounded-2xl flex items-center justify-center">
+    <div className="w-full h-56 sm:h-72 md:h-80 lg:h-96 relative overflow-hidden rounded-2xl flex items-center justify-center">
       {!loaded && (
         <div
           className="absolute inset-0 flex items-center justify-center z-10"
@@ -39,7 +40,7 @@ function VideoWithSkeleton({ src, className }) {
         loop
         onCanPlayThrough={() => setLoaded(true)}
         className={
-          `${className} w-full h-full object-cover rounded-2xl drop-shadow-sm ` +
+          `${className ? className : ""} w-full h-full object-cover rounded-2xl drop-shadow-sm ` +
           (!loaded ? "invisible" : "")
         }
         style={{ transition: "visibility 0.2s" }}
@@ -49,9 +50,18 @@ function VideoWithSkeleton({ src, className }) {
 }
 
 export default function Home() {
-  return (
-    <div >
+  const navigate = useNavigate();
 
+  // Only scrolls to #productDiv (ProductCard section), no extraneous style settings
+  const scrollToSection = () => {
+    const el = document.getElementById("productDiv");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
+  return (
+    <div>
       {/* Hero Section */}
       <section className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8 items-center px-4 py-16">
         <div>
@@ -62,11 +72,17 @@ export default function Home() {
             Farm fresh produce delivered straight to your door every day.
           </p>
           <div className="flex gap-4">
-            <button className="bg-green-600 text-white px-6 py-3 rounded-full hover:bg-green-700">
-             <a href="categoryTab"> Shop Now</a>
+            <button
+              className="bg-green-600 text-white px-6 py-3 rounded-full hover:bg-green-700"
+              onClick={() => navigate('/categoryProduct')}
+            >
+              Shop Now
             </button>
-            <button className="border border-green-600 text-green-700 px-6 py-3 rounded-full hover:bg-green-50">
-             <a href="#productDiv"> View Deals</a>
+            <button
+              className="border border-green-600 text-green-700 px-6 py-3 rounded-full hover:bg-green-50"
+              onClick={scrollToSection}
+            >
+              View Deals
             </button>
           </div>
         </div>
@@ -74,10 +90,10 @@ export default function Home() {
       </section>
 
       {/* Categories */}
-     <CategoriesTab/>
+      <CategoriesTab />
 
       {/* Products */}
- <ProductCard/>
+      <ProductCard />
 
       {/* Why Choose Us */}
       <section className="bg-green-50 py-12">
@@ -86,21 +102,28 @@ export default function Home() {
             Why Choose Us
           </h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {reasons.map((reason, idx) => (
-              <div
-                key={reason.title + idx}
-                className="bg-white p-6 rounded-xl shadow text-center"
-              >
-                <div className="w-12 h-12 mx-auto mb-3 bg-green-100 rounded-full flex items-center justify-center">
-                 <reason.icon size={28} color="green"/>
+            {reasons.map((reason, idx) => {
+              const Icon = reason.icon;
+              return (
+                <div
+                  key={reason.title + idx}
+                  className="bg-white p-6 rounded-xl shadow text-center "
+                >
+                  <div className="w-12 h-12 mx-auto mb-3 bg-green-100 rounded-full flex items-center justify-center">
+                    <Icon size={28} color="green" />
+                  </div>
+                  <p className="font-medium">{reason.title}</p>
                 </div>
-                <p className="font-medium">{reason.title}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
-     
+
+      {/* CartTab Button visible when cart item > 0 */}
+      <div className="relative flex items-center justify-center">
+        <CartTab />
+      </div>
     </div>
   );
 }

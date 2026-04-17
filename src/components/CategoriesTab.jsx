@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router';
+import { useNavigate, useLocation } from 'react-router-dom'; 
 
 const categories = [
   {
@@ -35,6 +35,18 @@ const categories = [
 ];
 
 const CategoriesTab = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // Get selected from query param if present
+  const params = new URLSearchParams(location.search);
+  const selectedCategory = params.get('selected') || '';
+
+  const handleCategoryClick = (cat) => {
+    // /categoryProduct?selected=CAT
+    navigate(`/categoryProduct?selected=${encodeURIComponent(cat.category)}`);
+  };
+
   return (
     <div id='categoryTab'>
       <section className="max-w-7xl mx-auto px-4 py-12">
@@ -45,7 +57,6 @@ const CategoriesTab = () => {
             overflow-x-auto 
             md:grid md:grid-cols-5 md:gap-6 md:overflow-visible
             pb-4 md:pb-0
-            
           "
           style={{
             WebkitOverflowScrolling: "touch",
@@ -61,11 +72,23 @@ const CategoriesTab = () => {
             `}
           </style>
           <div className="hide-scrollbar contents">
-            {categories.map((cat, idx) => (
-              <Link to={`/${cat.slug}`} key={cat.category + idx}>
+            {categories.map((cat, idx) => {
+              const isActive = selectedCategory === cat.category;
+              return (
                 <div
-                  className="shrink-0 bg-white p-4 rounded-xl shadow hover:shadow-lg text-center cursor-pointer md:w-auto w-30 h-36"
+                  key={cat.category + idx}
+                  onClick={() => handleCategoryClick(cat)}
+                  className={
+                    "shrink-0 bg-white p-4 rounded-xl shadow hover:shadow-lg text-center cursor-pointer md:w-auto w-30 h-36 transition border-2 " +
+                    (isActive ? "border-green-500 ring-2 ring-green-400" : "border-transparent")
+                  }
                   title={cat.category}
+                  style={{ userSelect: 'none' }}
+                  tabIndex={0}
+                  role="button"
+                  onKeyPress={e => {
+                    if (e.key === 'Enter' || e.key === ' ') handleCategoryClick(cat);
+                  }}
                 >
                   <div className="flex justify-center flex-col items-center gap-1">
                     <div className="bg-transparent flex justify-center items-center">
@@ -78,8 +101,8 @@ const CategoriesTab = () => {
                     <p className="font-medium">{cat.category}</p>
                   </div>
                 </div>
-              </Link>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
