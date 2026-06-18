@@ -2,7 +2,7 @@ const products = [
     // --- VEGETABLES ---
     {
       id: "v1",
-      name: "Safed Petha",
+      name: "Safed petha",
       price: 45,
       unit: "kg",
       category: "Vegetables",
