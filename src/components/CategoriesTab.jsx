@@ -23,7 +23,7 @@ const categories = [
   {
     category: "Dairy & Eggs",
     image:
-      "https://res.cloudinary.com/dr9al4lhy/image/upload/e_background_removal/b_rgb:FFFFFF/f_png/v1765979182/474e6e58-1894-4378-86f1-168cc7266d1a_brutr2.png",
+      "https://res.cloudinary.com/dr9al4lhy/image/upload/v1781808453/54900_k2lzgv.png",
     slug: "dairy",
   },
   {
