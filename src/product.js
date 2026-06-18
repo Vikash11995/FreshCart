@@ -6,7 +6,8 @@ const products = [
       price: 45,
       unit: "kg",
       category: "Vegetables",
-      image: "https://www.bbassets.com/media/uploads/p/l/10000010-3_3-fresho-ash-gourd.jpg"
+      image: "https://www.bbassets.com/media/uploads/p/l/10000010-3_3-fresho-ash-gourd.jpg",
+      slug: "safed-petha"
     },
     {
       id: "v2",
@@ -14,7 +15,8 @@ const products = [
       price: 20,
       unit: "250g",
       category: "seasonings",
-      image: "https://www.bbassets.com/media/uploads/p/m/10000332_17-fresho-amla.jpg?tr=w-154,q-80"
+      image: "https://www.bbassets.com/media/uploads/p/m/10000332_17-fresho-amla.jpg?tr=w-154,q-80",
+      slug: "amla"
     },
     {
       id: "v3",
@@ -22,7 +24,8 @@ const products = [
       price: 30,
       unit: "250g",
       category: "seasonings",
-      image: "https://www.bbassets.com/media/uploads/p/l/40004372_16-fresho-turmeric-fresh.jpg"
+      image: "https://www.bbassets.com/media/uploads/p/l/40004372_16-fresho-turmeric-fresh.jpg",
+      slug: "raw-haldi"
     },
     {
       id: "v4",
@@ -30,7 +33,8 @@ const products = [
       price: 40,
       unit: "500g",
       category: "Vegetables",
-      image: "https://www.bbassets.com/media/uploads/p/m/10000194_15-fresho-sweet-potato.jpg?tr=w-154,q-80"
+      image: "https://www.bbassets.com/media/uploads/p/m/10000194_15-fresho-sweet-potato.jpg?tr=w-154,q-80",
+      slug: "sweet-potato"
     },
     {
       id: "v5",
@@ -38,7 +42,8 @@ const products = [
       price: 40,
       unit: "kg",
       category: "Vegetables",
-      image: "https://www.bbassets.com/media/uploads/p/m/10000149_15-fresho-onion.jpg?tr=w-154,q-80"
+      image: "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=720/da/cms-assets/cms/product/f53c1ea1-cfa0-438b-a14c-b4f5ebeed7dd.png",
+      slug: "onion"
     },
     {
       id: "v6",
@@ -46,7 +51,8 @@ const products = [
       price: 30,
       unit: "kg",
       category: "Vegetables",
-      image: "https://www.bbassets.com/media/uploads/p/m/40048457_20-fresho-potato-new-crop.jpg?tr=w-154,q-80"
+      image: "https://www.bbassets.com/media/uploads/p/m/40048457_20-fresho-potato-new-crop.jpg?tr=w-154,q-80",
+      slug: "potato"
     },
     {
       id: "v7",
@@ -54,7 +60,8 @@ const products = [
       price: 50,
       unit: "packet",
       category: "organic",
-      image: "https://www.bbassets.com/media/uploads/p/l/10000273_18-fresho-mushrooms-button.jpg"
+      image: "https://www.bbassets.com/media/uploads/p/l/10000273_18-fresho-mushrooms-button.jpg",
+      slug: "mushroom"
     },
     {
       id: "v8",
@@ -62,7 +69,8 @@ const products = [
       price: 60,
       unit: "500g",
       category: "vegetables",
-      image: "https://www.bbassets.com/media/uploads/p/l/10000062_25-fresho-broccoli.jpg"
+      image: "https://www.bbassets.com/media/uploads/p/l/10000062_25-fresho-broccoli.jpg",
+      slug: "broccoli"
     },
   
     // --- SAAG / LEAFY GREENS ---
@@ -72,7 +80,8 @@ const products = [
       price: 25,
       unit: "bunch",
       category: "herbs",
-      image: "https://www.bbassets.com/media/uploads/p/m/40050066_5-fresho-palak-organically-grown.jpg?tr=w-154,q-80"
+      image: "https://www.bbassets.com/media/uploads/p/m/40050066_5-fresho-palak-organically-grown.jpg?tr=w-154,q-80",
+      slug: "palak"
     },
     {
       id: "s2",
@@ -80,7 +89,8 @@ const products = [
       price: 25,
       unit: "bunch",
       category: "herbs",
-      image: "https://www.bbassets.com/media/uploads/p/m/10000112_22-fresho-methiventhaya-keerai-cleaned-without-roots.jpg?tr=w-154,q-80"
+      image: "https://www.bbassets.com/media/uploads/p/m/10000112_22-fresho-methiventhaya-keerai-cleaned-without-roots.jpg?tr=w-154,q-80",
+      slug: "methi"
     },
   
     // --- FRUITS ---
@@ -90,7 +100,8 @@ const products = [
       price: 190,
       unit: "kg",
       category: "Fruits",
-      image: "https://www.bbassets.com/media/uploads/p/m/40033821_12-fresho-apple-kinnaur.jpg?tr=w-154,q-80"
+      image: "https://www.bbassets.com/media/uploads/p/m/40033821_12-fresho-apple-kinnaur.jpg?tr=w-154,q-80",
+      slug: "apple-kinnaur"
     },
     {
       id: "f2",
@@ -98,7 +109,8 @@ const products = [
       price: 70,
       unit: "dozen",
       category: "Fruits",
-      image: "https://www.bbassets.com/media/uploads/p/m/10000027_32-fresho-banana-robusta.jpg?tr=w-154,q-80"
+      image: "https://www.bbassets.com/media/uploads/p/m/10000027_32-fresho-banana-robusta.jpg?tr=w-154,q-80",
+      slug: "banana"
     },
     {
       id: "f3",
@@ -106,7 +118,8 @@ const products = [
       price: 85,
       unit: "piece",
       category: "Fruits",
-      image: "https://www.bbassets.com/media/uploads/p/l/40008982_17-fresho-dragon-fruit.jpg"
+      image: "https://www.bbassets.com/media/uploads/p/l/40008982_17-fresho-dragon-fruit.jpg",
+      slug: "dragon-fruit"
     },
     {
       id: "f4",
@@ -114,7 +127,8 @@ const products = [
       price: 240,
       unit: "kg",
       category: "Fruits",
-      image: "https://cdn.zeptonow.com/production/tr:w-403,ar-1024-1024,pr-true,f-auto,q-40,dpr-2/cms/product_variant/de40eb0f-0c4c-4356-9813-321eb312eca1.jpeg"
+      image: "https://cdn.zeptonow.com/production/tr:w-403,ar-1024-1024,pr-true,f-auto,q-40,dpr-2/cms/product_variant/de40eb0f-0c4c-4356-9813-321eb312eca1.jpeg",
+      slug: "pomegranate"
     },
     {
       id: "f5",
@@ -122,7 +136,8 @@ const products = [
       price: 70,
       unit: "500g",
       category: "Fruits",
-      image: "https://cdn.zeptonow.com/production/tr:w-403,ar-3000-3000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/9156c8a0-e9a3-4f54-a27c-2fc874db0f1f.jpeg"
+      image: "https://cdn.zeptonow.com/production/tr:w-403,ar-3000-3000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/9156c8a0-e9a3-4f54-a27c-2fc874db0f1f.jpeg",
+      slug: "chiku"
     },
     {
       id: "f6",
@@ -130,7 +145,8 @@ const products = [
       price: 120,
       unit: "kg",
       category: "Fruits",
-      image: "https://cdn.zeptonow.com/production/tr:w-403,ar-3000-3000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/85ea6516-de09-455a-a332-cedcada09588.jpeg"
+      image: "https://cdn.zeptonow.com/production/tr:w-403,ar-3000-3000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/85ea6516-de09-455a-a332-cedcada09588.jpeg",
+      slug: "guava"
     },
     {
       id: "f7",
@@ -138,7 +154,8 @@ const products = [
       price: 80,
       unit: "kg",
       category: "Fruits",
-      image: "https://cdn.zeptonow.com/production/tr:w-403,ar-3000-3000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/083aa85c-d5cc-4513-9c9f-fe81805157a5.jpeg"
+      image: "https://cdn.zeptonow.com/production/tr:w-403,ar-3000-3000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/083aa85c-d5cc-4513-9c9f-fe81805157a5.jpeg",
+      slug: "desi-guava"
     },
     {
       id: "f8",
@@ -146,7 +163,8 @@ const products = [
       price: 140,
       unit: "kg",
       category: "Fruits",
-      image: "https://res.cloudinary.com/dr9al4lhy/image/upload/c_crop,ar_1:1/v1765947215/navbharat-times-1718704164199_rdlgc6.webp"
+      image: "https://res.cloudinary.com/dr9al4lhy/image/upload/c_crop,ar_1:1/v1765947215/navbharat-times-1718704164199_rdlgc6.webp",
+      slug: "sarifa"
     },
     {
       id: "f9",
@@ -154,7 +172,8 @@ const products = [
       price: 145,
       unit: "4 pcs",
       category: "Fruits",
-      image: "https://cdn.zeptonow.com/production/tr:w-403,ar-3000-3000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/fb069e9b-7616-4a89-b363-a292123554c6.jpeg"
+      image: "https://cdn.zeptonow.com/production/tr:w-403,ar-3000-3000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/fb069e9b-7616-4a89-b363-a292123554c6.jpeg",
+      slug: "kiwi"
     },
     {
       id: "f10",
@@ -162,7 +181,8 @@ const products = [
       price: 80,
       unit: "kg",
       category: "Fruits",
-      image: "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=450/da/cms-assets/cms/product/98a70607-18d3-4cba-87cf-0193ef733730.png"
+      image: "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=450/da/cms-assets/cms/product/98a70607-18d3-4cba-87cf-0193ef733730.png",
+      slug: "mosambi"
     },
     {
       id: "f11",
@@ -170,7 +190,8 @@ const products = [
       price: 120,
       unit: "kg",
       category: "Fruits",
-      image: "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=450/da/cms-assets/cms/product/d4cc2986-4fde-4435-bd97-1e6f8730d5f6.png"
+      image: "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=450/da/cms-assets/cms/product/d4cc2986-4fde-4435-bd97-1e6f8730d5f6.png",
+      slug: "orange"
     },
   
     {
@@ -179,7 +200,8 @@ const products = [
       price: 150,
       unit: "kg",
       category: "Fruits",
-      image: "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=450/da/cms-assets/cms/product/6cb3350f-2f86-4c56-8795-f307252c1e79.png"
+      image: "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=450/da/cms-assets/cms/product/6cb3350f-2f86-4c56-8795-f307252c1e79.png",
+      slug: "apple"
     },
   
     {
@@ -188,7 +210,8 @@ const products = [
       price: 65,
       unit: "piece",
       category: "Fruits",
-      image: "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=450/da/cms-assets/cms/product/60cd73b6-dd4a-4814-a9aa-4439cc710215.png"
+      image: "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=450/da/cms-assets/cms/product/60cd73b6-dd4a-4814-a9aa-4439cc710215.png",
+      slug: "papaya"
     },
   
     {
@@ -197,7 +220,8 @@ const products = [
       price: 80,
       unit: "piece",
       category: "Fruits",
-      image: "https://res.cloudinary.com/dr9al4lhy/image/upload/c_crop,ar_1:1/v1765947215/a-glass-of-coconut-water-with-green-coconut-on-a-white-background_b6bsm5.webp"
+      image: "https://res.cloudinary.com/dr9al4lhy/image/upload/c_crop,ar_1:1/v1765947215/a-glass-of-coconut-water-with-green-coconut-on-a-white-background_b6bsm5.webp",
+      slug: "coconut-water"
     },
   
     // --- DAIRY & OTHERS ---
@@ -207,7 +231,8 @@ const products = [
       price: 80,
       unit: "250g",
       category: "Dairy",
-      image: "https://res.cloudinary.com/dr9al4lhy/image/upload/v1765894932/360_F_632649552_4Gi6jOlnbDllG1qyjKo53lzdFDJNDfhq_stjmfx.jpg"
+      image: "https://res.cloudinary.com/dr9al4lhy/image/upload/v1765894932/360_F_632649552_4Gi6jOlnbDllG1qyjKo53lzdFDJNDfhq_stjmfx.jpg",
+      slug: "dairy-paneer"
     },
     {
       id: "d2",
@@ -215,7 +240,8 @@ const products = [
       price: 30,
       unit: "250g",
       category: "Dairy",
-      image: "https://res.cloudinary.com/dr9al4lhy/image/upload/c_crop,ar_1:1/v1765947758/bowl-of-dried-peas-on-white-background-free-photo_xnnuwd.webp"
+      image: "https://res.cloudinary.com/dr9al4lhy/image/upload/c_crop,ar_1:1/v1765947758/bowl-of-dried-peas-on-white-background-free-photo_xnnuwd.webp",
+      slug: "white-peas"
     },
     {
       id: "d3",
@@ -223,7 +249,8 @@ const products = [
       price: 300,
       unit: "30 eggs",
       category: "Eggs",
-      image: "https://www.bbassets.com/media/uploads/p/m/40313518_1-naatis-mix-combo-eggs.jpg?tr=w-154,q-80"
+      image: "https://www.bbassets.com/media/uploads/p/m/40313518_1-naatis-mix-combo-eggs.jpg?tr=w-154,q-80",
+      slug: "egg-crate"
     },
   
     // --- FROZEN ---
@@ -233,7 +260,8 @@ const products = [
       price: 120,
       unit: "kg",
       category: "Frozen",
-      image: "https://imgs.search.brave.com/f14E-JnjFBS6rAE9Rm6kEN0TF79zU0_W7gM9wkPfYy0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly91cy4x/MjNyZi5jb20vNDUw/d20vY29naXBpeC9j/b2dpcGl4MTAxMC9j/b2dpcGl4MTAxMDAw/MTQ0LzgxMzIzMTYt/ZnJvemVuLXBlYXMt/b24tYS1wbGF0ZS5q/cGc_dmVyPTY"
+      image: "https://imgs.search.brave.com/f14E-JnjFBS6rAE9Rm6kEN0TF79zU0_W7gM9wkPfYy0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly91cy4x/MjNyZi5jb20vNDUw/d20vY29naXBpeC9j/b2dpcGl4MTAxMC9j/b2dpcGl4MTAxMDAw/MTQ0LzgxMzIzMTYt/ZnJvemVuLXBlYXMt/b24tYS1wbGF0ZS5q/cGc_dmVyPTY",
+      slug: "frozen-peas"
     },
     {
       id: "fz2",
@@ -241,7 +269,8 @@ const products = [
       price: 130,
       unit: "kg",
       category: "Frozen",
-      image: "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=450/da/cms-assets/cms/product/99c15d2f-06ab-47a9-8f6c-96675195d51f.png"
+      image: "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=450/da/cms-assets/cms/product/99c15d2f-06ab-47a9-8f6c-96675195d51f.png",
+      slug: "frozen-corn"
     }
   ];
   

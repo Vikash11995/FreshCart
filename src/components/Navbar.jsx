@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router'
+import products from '../product' // <-- Update path if your products.js is elsewhere
 
 const NAVBAR_HEIGHT = 64; // px; for consistent spacing if needed elsewhere
 
@@ -35,6 +36,8 @@ function Navbar() {
   const [typedLength, setTypedLength] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false); // Used only on mobile
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const inputRef = useRef(null);
 
   useEffect(() => {
@@ -61,12 +64,27 @@ function Navbar() {
     return () => clearTimeout(typingInterval);
   }, [typedLength, isDeleting, currentPhrase]);
 
-  // If input is focused, search is open (for mobile overlay only)
+  useEffect(() => {
+    if (searchTerm.trim()) {
+      // Filter products by name or any relevant field (case-insensitive)
+      const lower = searchTerm.toLowerCase();
+      setFilteredProducts(
+        products.filter(
+          (p) =>
+            p.name.toLowerCase().includes(lower) ||
+            (p.category && p.category.toLowerCase().includes(lower))
+        )
+      );
+    } else {
+      setFilteredProducts([]);
+    }
+  }, [searchTerm]);
+
   function handleFocus() {
     setSearchOpen(true);
   }
   function handleBlur() {
-    setSearchOpen(false);
+    setTimeout(() => setSearchOpen(false), 150); // Give time for suggestion clicks
   }
   function openSearchMobile() {
     setSearchOpen(true);
@@ -75,9 +93,19 @@ function Navbar() {
     }, 50);
   }
   function closeSearchMobile(e) {
-    // Optional: Only close if clicking outside input in overlay
     setSearchOpen(false);
   }
+  function handleInputChange(e) {
+    setSearchTerm(e.target.value);
+  }
+  function handleSuggestionClick(product) {
+    window.location.href = `/details/${product.slug || product.id || product.name}`;
+    setSearchOpen(false);
+    setSearchTerm('');
+  }
+
+  // Only show suggestions if search is open (on mobile) or on desktop with input focus
+  const showSuggestions = (searchOpen || window.innerWidth >= 640) && searchTerm && filteredProducts.length > 0;
 
   return (
     <header
@@ -85,7 +113,7 @@ function Navbar() {
       style={{ height: NAVBAR_HEIGHT, zIndex: 50 }}
     >
       <div
-        className="max-w-7xl mx-auto flex items-center justify-between p-4"
+        className="max-w-7xl mx-auto flex items-center justify-between p-4 "
         style={{ minHeight: NAVBAR_HEIGHT }}
       >
         <Link
@@ -100,6 +128,51 @@ function Navbar() {
             FreshCart.
           </h1>
         </Link>
+
+        {/* Single unified search bar, works for all screen sizes */}
+        {/* Hide unified search bar for desktop view */}
+        <div className={`relative items-center flex-1 mx-4 max-w-md ${searchOpen ? 'flex' : 'hidden'} sm:hidden`}>
+   
+          <span className="text-gray-400 mr-2">
+            <MagnifierIcon />
+          </span>
+          <input
+            type="text"
+            value={searchTerm}
+            ref={inputRef}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            onChange={handleInputChange}
+            placeholder={placeholder || " "}
+            className="flex-1 px-3 py-2 border rounded-xl focus:outline-none focus:ring-0.5 focus:ring-green-400 shadow"
+            style={{ minWidth: 0 }}
+            autoComplete="off"
+          />
+          {/* Suggestions dropdown */}
+          {searchTerm && (
+            <div className="absolute top-full left-0 w-full bg-white border border-gray-200 mt-1 rounded shadow-lg z-40">
+              {filteredProducts.length > 0 ? (
+                filteredProducts.map((prod) => (
+                  <div
+                    key={prod.id || prod.slug || prod.name}
+                    className="px-3 py-2 hover:bg-amber-50 cursor-pointer flex items-center"
+                    onMouseDown={() => handleSuggestionClick(prod)}
+                  >
+                    <img
+                      src={prod.image || prod.img || ""}
+                      alt={prod.name}
+                      className="h-7 w-7 object-contain rounded mr-2"
+                      style={{ background: "#f6f6fa" }}
+                    />
+                    <span className="text-gray-800">{prod.name}</span>
+                  </div>
+                ))
+              ) : (
+                <div className="px-3 py-2 text-gray-400">No matches found.</div>
+              )}
+            </div>
+          )}
+        </div>
 
         <button
           className="sm:hidden ml-2 p-2 rounded-full hover:bg-gray-100 transition"
@@ -117,9 +190,10 @@ function Navbar() {
         </button>
       </div>
 
-      {/* Mobile search overlay */}
+      {/* Mobile search overlay for close (no input duplication) */}
       {searchOpen && (
-        <div className=" fixed top-0 left-0 right-0 w-full h-full bg-[rgba(255,255,255,0.95)] z-50 flex flex-col items-center"
+        <div
+          className="fixed top-0 left-0 right-0 w-full h-full bg-[rgba(255,255,255,0.95)] z-50 flex flex-col items-center"
           onClick={closeSearchMobile}
         >
           <div className="w-full flex items-center px-4 pt-6 pb-2">
@@ -127,8 +201,10 @@ function Navbar() {
               <MagnifierIcon className=' ' />
             </span>
             <input
-              ref={inputRef}
+              ref={inputRef}        
               type="text"
+              value={searchTerm}
+              onChange={handleInputChange}
               placeholder={placeholder || " "}
               className="flex-1 px-3 py-2 border rounded-xl focus:outline-none focus:ring-0.5 focus:ring-green-400 shadow"
               onFocus={handleFocus}
@@ -136,6 +212,7 @@ function Navbar() {
               autoFocus
               style={{ minWidth: 0 }}
               onClick={e => e.stopPropagation()}
+              autoComplete="off"
             />
             <button
               className="ml-2 text-gray-500 px-2 font-bold text-xl hover:text-green-600"
@@ -143,12 +220,37 @@ function Navbar() {
               onClick={e => {
                 e.stopPropagation();
                 setSearchOpen(false);
+                setSearchTerm('');
               }}
               type="button"
             >
               &times;
             </button>
           </div>
+          {/* Suggestions (same as main search bar, for mobile) */}
+          {searchTerm && (
+            <div className="w-full max-w-md mx-auto bg-white border border-gray-200 rounded shadow mt-1">
+              {filteredProducts.length > 0 ? (
+                filteredProducts.map((prod) => (
+                  <div
+                    key={prod.id || prod.slug || prod.name}
+                    className="px-3 py-2 hover:bg-amber-50 cursor-pointer flex items-center"
+                    onMouseDown={() => handleSuggestionClick(prod)}
+                  >
+                    <img
+                      src={prod.image || prod.img || ""}
+                      alt={prod.name}
+                      className="h-7 w-7 object-contain rounded mr-2"
+                      style={{ background: "#f6f6fa" }}
+                    />
+                    <span className="text-gray-800">{prod.name}</span>
+                  </div>
+                ))
+              ) : (
+                <div className="px-3 py-2 text-gray-400">No matches found.</div>
+              )}
+            </div>
+          )}
         </div>
       )}
     </header>

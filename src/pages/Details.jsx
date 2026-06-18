@@ -1,67 +1,96 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { useParams } from 'react-router-dom'
+// import { addToCart } from '../features/cart'
+import products from '../product'
 
 const Details = () => {
-  const dispatch = useDispatch()
-  const { slug } = useParams()
-  const [details, setDetails] = useState([])
-  const [quantity, setQuantity] = useState(1)
-  const [animateAdd, setAnimateAdd] = useState(false)
+  const dispatch = useDispatch();
+  const { slug } = useParams();
+  const [details, setDetails] = useState(null);
+  const [quantity, setQuantity] = useState(1);
+  const [animateAdd, setAnimateAdd] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const findDetails = products.filter(product => product.slug === slug)
-    if (findDetails.length > 0) {
-      setDetails(findDetails[0])
-    } else {
-      // Optional: Handle 404 case
-      setDetails(null)
+    try {
+      const findDetails = products.filter(product => product.slug === slug);
+      if (findDetails.length > 0) {
+        setDetails(findDetails[0]);
+        setError(null);
+      } else {
+        setDetails(null);
+        setError('Product not found.');
+      }
+    } catch (err) {
+      setDetails(null);
+      setError('An error occurred while fetching the product details.');
     }
-  }, [slug])
+  }, [slug]);
 
   const handleMinusBtn = () => {
-    setQuantity((quantity - 1) < 1 ? 1 : quantity - 1)
+    setQuantity(prev => (prev - 1) < 1 ? 1 : prev - 1);
   }
 
   const handlePlusBtn = () => {
-    setQuantity(quantity + 1)
+    setQuantity(prev => prev + 1);
   }
 
   const handleAddCart = () => {
-    dispatch(addToCart({
-      productId: details.id,
-      quantity: quantity,
-    }))
-    setAnimateAdd(true)
+    try {
+      if (!details) {
+        setError('No product details available.');
+        return;
+      }
+      dispatch(addToCart({
+        productId: details.id,
+        quantity: quantity,
+      }));
+      setAnimateAdd(true);
+      setError(null);
+    } catch (err) {
+      setError('Could not add to cart. Please try again.');
+    }
   }
 
   // Animation will reset itself after 600ms
   useEffect(() => {
-    let timeout
+    let timeout;
     if (animateAdd) {
-      timeout = setTimeout(() => setAnimateAdd(false), 600)
+      timeout = setTimeout(() => setAnimateAdd(false), 600);
     }
-    return () => clearTimeout(timeout)
-  }, [animateAdd])
+    return () => clearTimeout(timeout);
+  }, [animateAdd]);
+
+  if (error) {
+    return (
+      <div className="flex flex-col justify-center items-center py-12">
+        <h1 className="text-2xl font-bold text-red-500 mb-4">Sorry!</h1>
+        <p className="text-lg">{error}</p>
+      </div>
+    );
+  }
 
   if (details === null) {
+    // Show loading spinner or fallback if needed
     return (
-      <div>
-        <h1>Jaa Nahi hai!</h1>
+      <div className="flex justify-center items-center py-12">
+        <span className="text-gray-400 text-lg">Loading...</span>
       </div>
-    )
+    );
   }
 
   return (
-    <div>
-      {/* <h1 className='text-center text-lg font-semibold'>Products Details</h1> */}
-      <div className='grid md:grid-cols-2 gap-5 mt-8 grid-cols-1 '>
-        <div className='md:bg-transparent bg-gray-200 flex justify-center'>
-          <img src={details.image} alt={details.name} className='bg-full' />
+    <div className=' '>
+      <div className='grid md:grid-cols-2 gap-5 grid-cols-1  '>
+        <div className='md:bg-transparent bg-transparent flex justify-center  p-4 '>
+          <img src={details.image} alt={details.name} className='bg-full w-90 rounded-lg' onError={e => {e.target.onerror=null;e.target.src='/fallback.png'}} />
         </div>
-        <div className='flex flex-col gap-5  px-2 py-6'>
-          <h1 className='text-4xl uppercase font-bold'>{details.name}</h1>
-          <p className='text-3xl font-bold text-zinc-700 '>Price : ${details.price}</p>
+        <div className='flex flex-col gap-5 px-2 py-3 items-center bg-gray-300/40 rounded-2xl m-3 mt-0 border'>
+          <h1 className='text-2xl uppercase font-bold'>{details.name}</h1>
+          <p className="md:text-lg text-gray-500  font-bold ">{`₹ ${details.price} / ${details.unit}`}</p>
           <div className='flex gap-5'>
-            <div className='flex gap-2 justify-center items-center'>
+            {/* {/* <div className='flex gap-2 justify-center items-center'>
               <button
                 className='bg-gray-100 font-bold text-xl h-full w-10 flex justify-center items-center rounded-xl hover:bg-gray-300/70 hover:shadow-xl'
                 onClick={handleMinusBtn}
@@ -71,25 +100,26 @@ const Details = () => {
                 className='bg-gray-100 font-bold h-full w-10 flex justify-center items-center rounded-xl text-xl hover:bg-gray-300/70 hover:shadow-xl'
                 onClick={handlePlusBtn}
               >+</button>
-            </div>
-            <div className="relative flex items-center">
+            </div> */}
+            {/* <div className="relative flex items-center">
               <button
                 className={`text-white px-7 py-3 rounded-xl shadow-sm bg-slate-900 hover:bg-slate-900/90 shadow-zinc-400 hover:shadow-lg transition-transform duration-300 ${animateAdd ? "scale-110 shadow-lg ring-amber-100" : ""}`}
                 style={{ outline: "none" }}
                 onClick={handleAddCart}
+                disabled={!details}
               >
                 Add to cart
               </button>
               {/* Animated cart icon/emoji flying animation */}
-              {animateAdd && (
+              {/* {animateAdd && (
                 <span
                   className="absolute -top-7 left-1/2 -translate-x-1/2 animate-cart-fly text-2xl pointer-events-none"
                   style={{
                     animation: 'cartFly 0.6s cubic-bezier(0.46, 0.03, 0.52, 0.96)'
                   }}
                 >🛒</span>
-              )}
-              <style>
+              )} */}
+              {/* <style>
                 {`
                   @keyframes cartFly {
                     0% {
@@ -110,14 +140,14 @@ const Details = () => {
                     }
                   }
                 `}
-              </style>
-            </div>
-          </div>
-          <p className='shadow-sm rounded-lg p-2'>{details.description}</p>
+              </style> */}
+            {/* </div> */} 
+          </div> 
+          {/* <p className='shadow-sm rounded-lg p-2'>{details.description}</p> */}
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Details
+export default Details;
